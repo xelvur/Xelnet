@@ -420,7 +420,7 @@ public:
 			float m_Zoom;
 			int m_Deadzone;
 			int m_FollowFactor;
-			};
+		};
 		CSpectateInfo m_SpecInfo;
 
 		class CCharacterInfo
@@ -436,7 +436,7 @@ public:
 			const CNetObj_DDNetCharacter *m_pPrevExtendedData;
 			bool m_HasExtendedData;
 			bool m_HasExtendedDisplayInfo;
-			};
+		};
 		CCharacterInfo m_aCharacters[MAX_CLIENTS];
 	};
 
@@ -745,7 +745,7 @@ public:
 	bool AntiPingWeapons() const { return g_Config.m_ClAntiPing && g_Config.m_ClAntiPingWeapons && !m_Snap.m_SpecInfo.m_Active && Client()->State() != IClient::STATE_DEMOPLAYBACK; }
 	bool AntiPingGunfire() const { return AntiPingGrenade() && AntiPingWeapons() && g_Config.m_ClAntiPingGunfire; }
 	bool Predict() const;
-	bool PredictDummy() const { return g_Config.m_ClPredictDummy && Client()->DummyConnected() && m_Snap.m_LocalClientId >= 0 && m_aLocalIds[!g_Config.m_ClDummy] >= 0 && !m_aClients[m_aLocalIds[!g_C[...]
+	bool PredictDummy() const { return g_Config.m_ClPredictDummy && Client()->DummyConnected() && m_Snap.m_LocalClientId >= 0 && m_aLocalIds[!g_Config.m_ClDummy] >= 0 && !m_aClients[m_aLocalIds[!g_Config.m_ClDummy]].m_Paused; }
 	const CTuningParams *GetTuning(int i) const { return &m_aTuningList[i]; }
 	ColorRGBA GetDDTeamColor(int DDTeam, float Lightness = 0.5f) const;
 	void FormatClientId(int ClientId, char (&aClientId)[16], EClientIdFormat Format) const;
@@ -1032,7 +1032,6 @@ private:
 
 public:
 	// TClient
-	// moved: float GetRenderAspect() const; inserted here
 	float GetRenderAspect() const;
 	int m_SmoothTick = 0;
 	float m_SmoothIntraTick = 0;
