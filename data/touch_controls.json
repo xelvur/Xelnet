@@ -1,17 +1,18 @@
 {
-	"direct-touch-ingame": "action",
+	"direct-touch-ingame": "disabled",
 	"direct-touch-spectate": "aim",
 	"background-color-inactive": "00000040",
 	"background-color-active": "33333340",
 	"touch-buttons": [
 		{
 			"x": 0,
-			"y": 833333,
-			"w": 200000,
-			"h": 166667,
+			"y": 770034,
+			"w": 261622,
+			"h": 229966,
 			"shape": "rect",
 			"visibilities": [
-				"ingame"
+				"ingame",
+				"-demo-player"
 			],
 			"behavior": {
 				"type": "bind",
@@ -21,13 +22,14 @@
 			}
 		},
 		{
-			"x": 200000,
-			"y": 833333,
-			"w": 200000,
-			"h": 166667,
+			"x": 261622,
+			"y": 769821,
+			"w": 254065,
+			"h": 230174,
 			"shape": "rect",
 			"visibilities": [
-				"ingame"
+				"ingame",
+				"-demo-player"
 			],
 			"behavior": {
 				"type": "bind",
@@ -37,13 +39,14 @@
 			}
 		},
 		{
-			"x": 100000,
-			"y": 666666,
-			"w": 200000,
-			"h": 166667,
+			"x": 85750,
+			"y": 157406,
+			"w": 288243,
+			"h": 267129,
 			"shape": "rect",
 			"visibilities": [
-				"ingame"
+				"ingame",
+				"-demo-player"
 			],
 			"behavior": {
 				"type": "bind",
@@ -53,29 +56,14 @@
 			}
 		},
 		{
-			"x": 116667,
-			"y": 16667,
-			"w": 83333,
-			"h": 83333,
+			"x": 119900,
+			"y": 0,
+			"w": 254093,
+			"h": 157406,
 			"shape": "rect",
 			"visibilities": [
-				"ingame"
-			],
-			"behavior": {
-				"type": "bind",
-				"label": "Prev. weapon",
-				"label-type": "localized",
-				"command": "+prevweapon"
-			}
-		},
-		{
-			"x": 200000,
-			"y": 16667,
-			"w": 83333,
-			"h": 83333,
-			"shape": "rect",
-			"visibilities": [
-				"ingame"
+				"ingame",
+				"-demo-player"
 			],
 			"behavior": {
 				"type": "bind",
@@ -85,12 +73,13 @@
 			}
 		},
 		{
-			"x": 16667,
-			"y": 16667,
-			"w": 83333,
-			"h": 83333,
+			"x": 0,
+			"y": 0,
+			"w": 119900,
+			"h": 157406,
 			"shape": "rect",
 			"visibilities": [
+				"-demo-player"
 			],
 			"behavior": {
 				"type": "predefined",
@@ -99,14 +88,15 @@
 			}
 		},
 		{
-			"x": 300000,
-			"y": 16667,
-			"w": 83333,
-			"h": 83333,
+			"x": 706749,
+			"y": 362962,
+			"w": 106314,
+			"h": 137038,
 			"shape": "rect",
 			"visibilities": [
-				"extra-menu",
-				"zoom-allowed"
+				"zoom-allowed",
+				"-demo-player",
+				"extra-menu"
 			],
 			"behavior": {
 				"type": "bind",
@@ -116,14 +106,15 @@
 			}
 		},
 		{
-			"x": 383333,
-			"y": 16667,
-			"w": 83333,
-			"h": 83333,
+			"x": 813063,
+			"y": 362962,
+			"w": 82519,
+			"h": 137038,
 			"shape": "rect",
 			"visibilities": [
-				"extra-menu",
-				"zoom-allowed"
+				"zoom-allowed",
+				"-demo-player",
+				"extra-menu"
 			],
 			"behavior": {
 				"type": "bind",
@@ -133,14 +124,15 @@
 			}
 		},
 		{
-			"x": 466666,
-			"y": 16667,
-			"w": 83333,
-			"h": 83333,
+			"x": 895582,
+			"y": 362962,
+			"w": 104418,
+			"h": 137038,
 			"shape": "rect",
 			"visibilities": [
-				"extra-menu",
-				"zoom-allowed"
+				"zoom-allowed",
+				"-demo-player",
+				"extra-menu"
 			],
 			"behavior": {
 				"type": "bind",
@@ -150,12 +142,13 @@
 			}
 		},
 		{
-			"x": 16667,
-			"y": 133333,
-			"w": 83333,
-			"h": 66667,
+			"x": 0,
+			"y": 162943,
+			"w": 85750,
+			"h": 96296,
 			"shape": "rect",
 			"visibilities": [
+				"-demo-player",
 				"extra-menu"
 			],
 			"behavior": {
@@ -166,13 +159,14 @@
 			}
 		},
 		{
-			"x": 116667,
-			"y": 133333,
-			"w": 83333,
-			"h": 66667,
+			"x": 0,
+			"y": 264760,
+			"w": 85750,
+			"h": 97222,
 			"shape": "rect",
 			"visibilities": [
 				"ingame",
+				"-demo-player",
 				"extra-menu"
 			],
 			"behavior": {
@@ -196,14 +190,14 @@
 			}
 		},
 		{
-			"x": 216667,
-			"y": 133333,
-			"w": 83333,
-			"h": 66667,
+			"x": 85879,
+			"y": 617078,
+			"w": 87479,
+			"h": 125462,
 			"shape": "rect",
 			"visibilities": [
-				"extra-menu",
-				"-demo-player"
+				"-demo-player",
+				"extra-menu"
 			],
 			"behavior": {
 				"type": "bind",
@@ -213,14 +207,14 @@
 			}
 		},
 		{
-			"x": 316667,
-			"y": 133333,
-			"w": 83333,
-			"h": 66667,
+			"x": 378795,
+			"y": 384164,
+			"w": 86788,
+			"h": 173524,
 			"shape": "rect",
 			"visibilities": [
-				"extra-menu",
-				"-demo-player"
+				"-demo-player",
+				"extra-menu"
 			],
 			"behavior": {
 				"type": "bind",
@@ -230,15 +224,15 @@
 			}
 		},
 		{
-			"x": 16667,
-			"y": 333333,
-			"w": 83333,
-			"h": 66667,
+			"x": 467724,
+			"y": 140359,
+			"w": 79733,
+			"h": 177003,
 			"shape": "rect",
 			"visibilities": [
-				"extra-menu",
 				"vote-active",
-				"-demo-player"
+				"-demo-player",
+				"extra-menu"
 			],
 			"behavior": {
 				"type": "bind",
@@ -248,15 +242,15 @@
 			}
 		},
 		{
-			"x": 116667,
-			"y": 333333,
-			"w": 83333,
-			"h": 66667,
+			"x": 373993,
+			"y": 142128,
+			"w": 93731,
+			"h": 176626,
 			"shape": "rect",
 			"visibilities": [
-				"extra-menu",
 				"vote-active",
-				"-demo-player"
+				"-demo-player",
+				"extra-menu"
 			],
 			"behavior": {
 				"type": "bind",
@@ -266,13 +260,14 @@
 			}
 		},
 		{
-			"x": 766667,
-			"y": 16667,
-			"w": 100000,
-			"h": 100000,
+			"x": 373993,
+			"y": 0,
+			"w": 93731,
+			"h": 142128,
 			"shape": "rect",
 			"visibilities": [
-				"dummy-connected"
+				"dummy-connected",
+				"-demo-player"
 			],
 			"behavior": {
 				"type": "bind",
@@ -282,31 +277,82 @@
 			}
 		},
 		{
-			"x": 883333,
-			"y": 16667,
-			"w": 100000,
-			"h": 100000,
+			"x": 547390,
+			"y": 500000,
+			"w": 452610,
+			"h": 500000,
 			"shape": "rect",
 			"visibilities": [
-				"ingame"
+				"ingame",
+				"-demo-player"
 			],
 			"behavior": {
 				"type": "predefined",
-				"id": "swap-action"
+				"id": "joystick-aim"
 			}
 		},
 		{
-			"x": 755000,
-			"y": 580000,
-			"w": 225000,
-			"h": 400000,
-			"shape": "circle",
+			"x": 177797,
+			"y": 424535,
+			"w": 196746,
+			"h": 317570,
+			"shape": "rect",
 			"visibilities": [
-				"ingame"
+				"-demo-player"
 			],
 			"behavior": {
-				"type": "predefined",
-				"id": "joystick-action"
+				"type": "bind",
+				"label": "fire",
+				"label-type": "localized",
+				"command": "+fire"
+			}
+		},
+		{
+			"x": 547457,
+			"y": 926,
+			"w": 452543,
+			"h": 362036,
+			"shape": "rect",
+			"visibilities": [
+				"-demo-player"
+			],
+			"behavior": {
+				"type": "bind",
+				"label": "hook",
+				"label-type": "localized",
+				"command": "+hook"
+			}
+		},
+		{
+			"x": 85807,
+			"y": 431928,
+			"w": 88098,
+			"h": 174519,
+			"shape": "rect",
+			"visibilities": [
+				"-demo-player"
+			],
+			"behavior": {
+				"type": "bind",
+				"label": "kill",
+				"label-type": "localized",
+				"command": "kill"
+			}
+		},
+		{
+			"x": 378126,
+			"y": 564835,
+			"w": 87021,
+			"h": 177069,
+			"shape": "rect",
+			"visibilities": [
+				"-demo-player"
+			],
+			"behavior": {
+				"type": "bind",
+				"label": "spec",
+				"label-type": "localized",
+				"command": "say \"/spec\""
 			}
 		}
 	]
