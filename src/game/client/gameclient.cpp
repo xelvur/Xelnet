@@ -5514,7 +5514,7 @@ void CGameClient::HandleMultiView()
 	m_Snap.m_SpecInfo.m_UsePosition = true;
 }
 
-float CGameClient::GetRenderAspect()
+float CGameClient::GetRenderAspect() const
 {
 	if(g_Config.m_TcStretchEnable)
 	{
