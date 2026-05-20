@@ -822,6 +822,13 @@ void CGameClient::UpdatePositions()
 
 void CGameClient::OnRender()
 {
+
+	// Stretch aspect override
+	if(g_Config.m_TcStretchEnable && Client()->State() == IClient::STATE_ONLINE)
+		Graphics()->SetAspectOverride((float)g_Config.m_TcStretchWidth / (float)g_Config.m_TcStretchHeight);
+	else
+		Graphics()->SetAspectOverride(0.0f);
+
 	const ColorRGBA ClearColor = color_cast<ColorRGBA>(ColorHSLA(g_Config.m_ClOverlayEntities ? g_Config.m_ClBackgroundEntitiesColor : g_Config.m_ClBackgroundColor));
 	Graphics()->Clear(ClearColor.r, ClearColor.g, ClearColor.b);
 
