@@ -2340,7 +2340,7 @@ void CGameClient::OnNewSnapshot()
 		{
 			CNetMsg_Cl_ShowDistance Msg;
 			float x, y;
-			Graphics()->CalcScreenParams(GetRenderAspect(), ShowDistanceZoom, &x, &y);
+			Graphics()->CalcScreenParams(Graphics()->ScreenAspect(), ShowDistanceZoom, &x, &y);
 			Msg.m_X = x;
 			Msg.m_Y = y;
 			CMsgPacker Packer(&Msg);
@@ -2359,11 +2359,11 @@ void CGameClient::OnNewSnapshot()
 	}
 
 	// send show distance
-	if(ShowDistanceZoom != m_LastShowDistanceZoom || GetRenderAspect() != m_LastScreenAspect)
+	if(ShowDistanceZoom != m_LastShowDistanceZoom || Graphics()->ScreenAspect() != m_LastScreenAspect)
 	{
 		CNetMsg_Cl_ShowDistance Msg;
 		float x, y;
-		Graphics()->CalcScreenParams(GetRenderAspect(), ShowDistanceZoom, &x, &y);
+		Graphics()->CalcScreenParams(Graphics()->ScreenAspect(), ShowDistanceZoom, &x, &y);
 		Msg.m_X = x;
 		Msg.m_Y = y;
 		Client()->ChecksumData()->m_Zoom = ShowDistanceZoom;
@@ -2392,7 +2392,7 @@ void CGameClient::OnNewSnapshot()
 
 	m_LastShowDistanceZoom = ShowDistanceZoom;
 	m_LastZoom = Zoom;
-	m_LastScreenAspect = GetRenderAspect();
+	m_LastScreenAspect = Graphics()->ScreenAspect();
 	m_LastDeadzone = Deadzone;
 	m_LastFollowFactor = FollowFactor;
 	m_LastDummyConnected = Client()->DummyConnected();
@@ -5537,7 +5537,7 @@ bool CGameClient::InitMultiView(int Team)
 	m_MultiView.m_IsInit = true;
 
 	// get the current view coordinates
-	Graphics()->CalcScreenParams(GetRenderAspect(), m_Camera.m_Zoom, &Width, &Height);
+	Graphics()->CalcScreenParams(Graphics()->ScreenAspect(), m_Camera.m_Zoom, &Width, &Height);
 	vec2 AxisX = vec2(m_Camera.m_Center.x - (Width / 2.0f), m_Camera.m_Center.x + (Width / 2.0f));
 	vec2 AxisY = vec2(m_Camera.m_Center.y - (Height / 2.0f), m_Camera.m_Center.y + (Height / 2.0f));
 
@@ -5664,7 +5664,7 @@ float CGameClient::CalculateMultiViewMultiplier(vec2 TargetPos)
 
 float CGameClient::CalculateMultiViewZoom(vec2 MinPos, vec2 MaxPos, float Vel)
 {
-	float Ratio = GetRenderAspect();
+	float Ratio = Graphics()-ScreenAspect();
 	float ZoomX = 0.0f, ZoomY;
 
 	// only calc two axis if the aspect ratio is not 1:1
