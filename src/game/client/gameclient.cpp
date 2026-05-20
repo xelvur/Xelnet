@@ -823,8 +823,8 @@ void CGameClient::UpdatePositions()
 void CGameClient::OnRender()
 {
 
-	// Stretch aspect override
-	if(g_Config.m_TcStretchEnable && Client()->State() == IClient::STATE_ONLINE)
+	// Stretch aspect override TEST!
+	if(g_Config.m_TcStretchEnable)
 		Graphics()->SetAspectOverride((float)g_Config.m_TcStretchWidth / (float)g_Config.m_TcStretchHeight);
 	else
 		Graphics()->SetAspectOverride(0.0f);
