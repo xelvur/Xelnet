@@ -5664,7 +5664,7 @@ float CGameClient::CalculateMultiViewMultiplier(vec2 TargetPos)
 
 float CGameClient::CalculateMultiViewZoom(vec2 MinPos, vec2 MaxPos, float Vel)
 {
-	float Ratio = Graphics()-ScreenAspect();
+	float Ratio = Graphics()->ScreenAspect();
 	float ZoomX = 0.0f, ZoomY;
 
 	// only calc two axis if the aspect ratio is not 1:1
