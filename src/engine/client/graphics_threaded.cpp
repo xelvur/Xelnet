@@ -2242,14 +2242,12 @@ void CGraphics_Threaded::SetForcedAspect(bool Force)
 {
 	if(!IsBackendInitialized())
 		return;
-	if(g_GraphicsForcedAspect == Force)
-		return;
+
 	g_GraphicsForcedAspect = Force;
 	m_pBackend->GetViewportSize(m_ScreenWidth, m_ScreenHeight);
 	AdjustViewport(false);
 	UpdateViewport(0, 0, m_ScreenWidth, m_ScreenHeight, false);
 
-	// kick the command buffer and wait
 	KickCommandBuffer();
 	WaitForIdle();
 
