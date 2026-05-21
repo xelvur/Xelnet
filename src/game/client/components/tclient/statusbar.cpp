@@ -232,7 +232,7 @@ void CStatusBar::SpaceRender() {}
 
 void CStatusBar::UpdateStatusBarSize()
 {
-	m_Width = 300.0f * GameClient()->GetRenderAspect();
+	m_Width = 300.0f * Graphics()->ScreenAspect();
 	m_Height = 300.0f;
 	m_BarHeight = g_Config.m_TcStatusBarHeight;
 	m_Margin = m_BarHeight * 0.2f;
