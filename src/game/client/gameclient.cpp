@@ -5521,15 +5521,6 @@ void CGameClient::HandleMultiView()
 	m_Snap.m_SpecInfo.m_UsePosition = true;
 }
 
-float CGameClient::GetRenderAspect() const
-{
-	if(g_Config.m_TcStretchEnable)
-	{
-		return (float)g_Config.m_TcStretchWidth / (float)g_Config.m_TcStretchHeight;
-	}
-	return Graphics()->ScreenAspect();
-}
-
 bool CGameClient::InitMultiView(int Team)
 {
 	float Width, Height;

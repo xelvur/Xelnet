@@ -1032,7 +1032,7 @@ private:
 
 public:
 	// TClient
-	float GetRenderAspect() const;
+	// float GetRenderAspect() const;
 	int m_SmoothTick = 0;
 	float m_SmoothIntraTick = 0;
 	bool CheckNewInput() override;

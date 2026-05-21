@@ -59,7 +59,7 @@ public:
 	bool m_DebugRenderQuadClips;
 	bool m_DebugRenderClusterClips;
 	bool m_DebugRenderTileClips;
-	float m_ForcedAspect = 0.0f;
+	//float m_ForcedAspect = 0.0f;
 };
 
 class CRenderLayer : public CRenderComponent

@@ -17,8 +17,10 @@ MACRO_CONFIG_INT(TcShowChatClient, tc_show_chat_client, 1, 0, 1, CFGFLAG_CLIENT 
 
 // Stretch aspect ratio
 MACRO_CONFIG_INT(TcStretchEnable, tc_stretch_enable, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable custom aspect ratio for stretched look")
-MACRO_CONFIG_INT(TcStretchWidth, tc_stretch_width, 4, 1, 32, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Stretch aspect ratio width (e.g. 4 for 4:3)")
-MACRO_CONFIG_INT(TcStretchHeight, tc_stretch_height, 3, 1, 32, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Stretch aspect ratio height (e.g. 3 for 4:3)")
+//MACRO_CONFIG_INT(TcStretchWidth, tc_stretch_width, 4, 1, 32, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Stretch aspect ratio width (e.g. 4 for 4:3)")
+//MACRO_CONFIG_INT(TcStretchHeight, tc_stretch_height, 3, 1, 32, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Stretch aspect ratio height (e.g. 3 for 4:3)")
+MACRO_CONFIG_INT(TcStretchWidth, tc_stretch_width, 16, 4, 16, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Stretch aspect width")
+MACRO_CONFIG_INT(TcStretchHeight, tc_stretch_height, 9, 3, 9, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Stretch aspect height")
 
 MACRO_CONFIG_INT(TcShowFrozenText, tc_frozen_tees_text, 0, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show how many tees in your team are currently frozen. (0 - off, 1 - show alive, 2 - show frozen)")
 MACRO_CONFIG_INT(TcShowFrozenHud, tc_frozen_tees_hud, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show frozen tee HUD")

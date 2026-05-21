@@ -275,8 +275,8 @@ void CRenderLayerGroup::Render(const CRenderLayerParams &Params)
 	int ParallaxZoom = std::clamp((maximum(m_pGroup->m_ParallaxX, m_pGroup->m_ParallaxY)), 0, 100);
 	float aPoints[4];
 	Graphics()->MapScreenToWorld(Params.m_Center.x, Params.m_Center.y, m_pGroup->m_ParallaxX, m_pGroup->m_ParallaxY, (float)ParallaxZoom,
-		//m_pGroup->m_OffsetX, m_pGroup->m_OffsetY, Graphics()->ScreenAspect(), Params.m_Zoom, aPoints);
-		m_pGroup->m_OffsetX, m_pGroup->m_OffsetY, Params.m_ForcedAspect > 0.0f ? Params.m_ForcedAspect : Graphics()->ScreenAspect(), Params.m_Zoom, aPoints);
+		m_pGroup->m_OffsetX, m_pGroup->m_OffsetY, Graphics()->ScreenAspect(), Params.m_Zoom, aPoints);
+		//m_pGroup->m_OffsetX, m_pGroup->m_OffsetY, Params.m_ForcedAspect > 0.0f ? Params.m_ForcedAspect : Graphics()->ScreenAspect(), Params.m_Zoom, aPoints);
 	Graphics()->MapScreen(aPoints[0], aPoints[1], aPoints[2], aPoints[3]);
 }
 

@@ -61,10 +61,5 @@ void CMapLayers::OnRender()
 	m_Params.m_DebugRenderClusterClips = g_Config.m_DbgRenderClusterClips;
 	m_Params.m_DebugRenderTileClips = g_Config.m_DbgRenderTileClips;
 	
-	if(Client()->State() == IClient::STATE_ONLINE || Client()->State() == IClient::STATE_DEMOPLAYBACK)
-	    m_Params.m_ForcedAspect = GameClient()->GetRenderAspect();
-    else
-        m_Params.m_ForcedAspect = 0.0f;
-	
 	m_MapRenderer.Render(m_Params);
 }

@@ -640,15 +640,7 @@ void CTClient::FinishTClientInfo()
 
 void CTClient::SetForcedAspect()
 {
-	// TODO: Fix flashing on windows
-	int State = Client()->State();
-	bool Force = true;
-	if(g_Config.m_TcAllowAnyRes == 0)
-		;
-	else if(State == CClient::EClientState::STATE_DEMOPLAYBACK)
-		Force = false;
-	else if(State == CClient::EClientState::STATE_ONLINE && GameClient()->m_GameInfo.m_AllowZoom && !GameClient()->m_Menus.IsActive())
-		Force = false;
+	const bool Force = g_Config.m_TcAllowAnyRes || g_Config.m_TcStretchEnable;
 	Graphics()->SetForcedAspect(Force);
 }
 
