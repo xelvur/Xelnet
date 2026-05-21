@@ -2245,12 +2245,13 @@ void CGraphics_Threaded::SetForcedAspect(bool Force)
 
 	g_GraphicsForcedAspect = Force;
 	m_pBackend->GetViewportSize(m_ScreenWidth, m_ScreenHeight);
+	// Сохраняем нативный размер ДО изменения
+	m_NativeScreenWidth = m_ScreenWidth;
+	m_NativeScreenHeight = m_ScreenHeight;
 	AdjustViewport(false);
 	UpdateViewport(0, 0, m_ScreenWidth, m_ScreenHeight, false);
-
 	KickCommandBuffer();
 	WaitForIdle();
-
 	for(auto &ResizeListener : m_vResizeListeners)
 		ResizeListener();
 }
