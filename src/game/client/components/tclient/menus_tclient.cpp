@@ -490,9 +490,9 @@ void CMenus::RenderSettingsTClientSettings(CUIRect MainView)
 	if(g_Config.m_TcStretchEnable)
 	{
 		Column.HSplitTop(LineSize, &Button, &Column);
-		Ui()->DoScrollbarOption(&g_Config.m_TcStretchWidth, &g_Config.m_TcStretchWidth, &Button, TCLocalize("Stretch Width"), 1, 32, &CUi::ms_LinearScrollbarScale, 0, "");
+		Ui()->DoScrollbarOption(&g_Config.m_TcStretchWidth, &g_Config.m_TcStretchWidth, &Button, TCLocalize("Stretch Width"), 4, 16, &CUi::ms_LinearScrollbarScale, 0, "");
 		Column.HSplitTop(LineSize, &Button, &Column);
-		Ui()->DoScrollbarOption(&g_Config.m_TcStretchHeight, &g_Config.m_TcStretchHeight, &Button, TCLocalize("Stretch Height"), 1, 32, &CUi::ms_LinearScrollbarScale, 0, "");
+		Ui()->DoScrollbarOption(&g_Config.m_TcStretchHeight, &g_Config.m_TcStretchHeight, &Button, TCLocalize("Stretch Height"), 3, 9, &CUi::ms_LinearScrollbarScale, 0, "");
 	}
 
 	Column.HSplitTop(LineSize, &Button, &Column);
