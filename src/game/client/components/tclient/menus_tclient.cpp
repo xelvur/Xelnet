@@ -495,13 +495,15 @@ void CMenus::RenderSettingsTClientSettings(CUIRect MainView)
 		Row.VSplitMid(&B1, &B2);
 		B2.VSplitMid(&B2, &B3);
 
-		if(DoButton_Menu(nullptr, "4:3", g_Config.m_TcStretchWidth == 4 && g_Config.m_TcStretchHeight == 3, &B1))
+		static int s_Btn43 = 0, s_Btn1610 = 0, s_Btn54 = 0;
+
+		if(DoButton_Menu(&s_Btn43, "4:3", g_Config.m_TcStretchWidth == 4 && g_Config.m_TcStretchHeight == 3, &B1))
 		{ g_Config.m_TcStretchWidth = 4; g_Config.m_TcStretchHeight = 3; }
 		
-		if(DoButton_Menu(nullptr, "16:10", g_Config.m_TcStretchWidth == 8 && g_Config.m_TcStretchHeight == 5, &B2))
+		if(DoButton_Menu(&s_Btn1610, "16:10", g_Config.m_TcStretchWidth == 8 && g_Config.m_TcStretchHeight == 5, &B2))
 		{ g_Config.m_TcStretchWidth = 8; g_Config.m_TcStretchHeight = 5; }
 		
-		if(DoButton_Menu(nullptr, "5:4", g_Config.m_TcStretchWidth == 5 && g_Config.m_TcStretchHeight == 4, &B3))
+		if(DoButton_Menu(&s_Btn54, "5:4", g_Config.m_TcStretchWidth == 5 && g_Config.m_TcStretchHeight == 4, &B3))
 		{ g_Config.m_TcStretchWidth = 5; g_Config.m_TcStretchHeight = 4; }
 	}
 	Column.HSplitTop(LineSize, &Button, &Column);
