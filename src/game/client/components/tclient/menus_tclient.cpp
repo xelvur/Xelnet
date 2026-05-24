@@ -489,12 +489,21 @@ void CMenus::RenderSettingsTClientSettings(CUIRect MainView)
 	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_TcStretchEnable, TCLocalize("Stretch (custom aspect ratio)"), &g_Config.m_TcStretchEnable, &Column, LineSize);
 	if(g_Config.m_TcStretchEnable)
 	{
-		Column.HSplitTop(LineSize, &Button, &Column);
-		Ui()->DoScrollbarOption(&g_Config.m_TcStretchWidth, &g_Config.m_TcStretchWidth, &Button, TCLocalize("Stretch Width"), 4, 16, &CUi::ms_LinearScrollbarScale, 0, "");
-		Column.HSplitTop(LineSize, &Button, &Column);
-		Ui()->DoScrollbarOption(&g_Config.m_TcStretchHeight, &g_Config.m_TcStretchHeight, &Button, TCLocalize("Stretch Height"), 3, 9, &CUi::ms_LinearScrollbarScale, 0, "");
-	}
+		CUIRect Row;
+		Column.HSplitTop(LineSize, &Row, &Column);
+		CUIRect B1, B2, B3;
+		Row.VSplitMid(&B1, &B2);
+		B2.VSplitMid(&B2, &B3);
 
+		if(DoButton_Menu(nullptr, "4:3", g_Config.m_TcStretchWidth == 4 && g_Config.m_TcStretchHeight == 3, &B1))
+		{ g_Config.m_TcStretchWidth = 4; g_Config.m_TcStretchHeight = 3; }
+		
+		if(DoButton_Menu(nullptr, "16:10", g_Config.m_TcStretchWidth == 8 && g_Config.m_TcStretchHeight == 5, &B2))
+		{ g_Config.m_TcStretchWidth = 8; g_Config.m_TcStretchHeight = 5; }
+		
+		if(DoButton_Menu(nullptr, "5:4", g_Config.m_TcStretchWidth == 5 && g_Config.m_TcStretchHeight == 4, &B3))
+		{ g_Config.m_TcStretchWidth = 5; g_Config.m_TcStretchHeight = 4; }
+	}
 	Column.HSplitTop(LineSize, &Button, &Column);
 	if(g_Config.m_TcAnimateWheelTime > 0)
 		Ui()->DoScrollbarOption(&g_Config.m_TcAnimateWheelTime, &g_Config.m_TcAnimateWheelTime, &Button, TCLocalize("Wheel animate"), 0, 1000, &CUi::ms_LinearScrollbarScale, 0, "ms");

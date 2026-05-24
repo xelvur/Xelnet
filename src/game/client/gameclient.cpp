@@ -825,6 +825,12 @@ void CGameClient::OnRender()
 	const ColorRGBA ClearColor = color_cast<ColorRGBA>(ColorHSLA(g_Config.m_ClOverlayEntities ? g_Config.m_ClBackgroundEntitiesColor : g_Config.m_ClBackgroundColor));
 	Graphics()->Clear(ClearColor.r, ClearColor.g, ClearColor.b);
 
+	// Stretch
+	if(g_Config.m_TcStretchEnable)
+	    Graphics()->SetAspectOverride((float)g_Config.m_TcStretchWidth / (float)g_Config.m_TcStretchHeight);
+	else
+	    Graphics()->SetAspectOverride(0.0f);
+
 	// check if multi view got activated
 	if(!m_MultiView.m_IsInit && m_MultiViewActivated)
 	{

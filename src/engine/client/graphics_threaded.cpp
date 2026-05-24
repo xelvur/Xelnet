@@ -2697,7 +2697,12 @@ void CGraphics_Threaded::GotResized(int w, int h, int RefreshRate)
 	auto PrevCanvasWidth = m_ScreenWidth;
 	auto PrevCanvasHeight = m_ScreenHeight;
 	m_pBackend->GetViewportSize(m_ScreenWidth, m_ScreenHeight);
-
+	
+	if(m_NativeScreenWidth == 0)
+	{
+		m_NativeScreenWidth = m_ScreenWidth;
+		m_NativeScreenHeight = m_ScreenHeight;
+	}
 	AdjustViewport(false);
 
 	m_ScreenRefreshRate = RefreshRate;
