@@ -495,7 +495,7 @@ void CMenus::RenderSettingsTClientSettings(CUIRect MainView)
 		Row.VSplitMid(&B1, &B2);
 		B2.VSplitMid(&B2, &B3);
 
-		static int s_Btn43 = 0, s_Btn1610 = 0, s_Btn54 = 0;
+		static CButtonContainer s_Btn43, s_Btn1610, s_Btn54;
 
 		if(DoButton_Menu(&s_Btn43, "4:3", g_Config.m_TcStretchWidth == 4 && g_Config.m_TcStretchHeight == 3, &B1))
 		{ g_Config.m_TcStretchWidth = 4; g_Config.m_TcStretchHeight = 3; }
