@@ -2258,41 +2258,19 @@ void CGraphics_Threaded::SetForcedAspect(bool Force)
 
 void CGraphics_Threaded::AdjustViewport(bool SendViewportChangeToBackend)
 {
-	if(g_GraphicsForcedAspect)
+	if(g_GraphicsForcedAspect && !g_Config.m_TcStretchEnable)
 	{
-		if(g_Config.m_TcStretchEnable)
+		// Оригинальное поведение TcAllowAnyRes (5:4)
+		if(m_ScreenHeight > 4 * m_ScreenWidth / 5)
 		{
-			float TargetAspect = (float)g_Config.m_TcStretchWidth / (float)g_Config.m_TcStretchHeight;
-			// Безопасный диапазон: минимум 4:3, максимум 2.5:1
-			TargetAspect = std::clamp(TargetAspect, 4.0f / 3.0f, 2.5f);
-			int NewWidth = (int)((float)m_ScreenHeight * TargetAspect);
-			NewWidth = minimum(NewWidth, m_ScreenWidth);
-			if(NewWidth < m_ScreenWidth)
-			{
-				m_IsForcedViewport = true;
-				m_ScreenWidth = NewWidth;
-				if(SendViewportChangeToBackend)
-					UpdateViewport(0, 0, m_ScreenWidth, m_ScreenHeight, true);
-			}
-			else
-			{
-				m_IsForcedViewport = false;
-			}
+			m_IsForcedViewport = true;
+			m_ScreenHeight = 4 * m_ScreenWidth / 5;
+			if(SendViewportChangeToBackend)
+				UpdateViewport(0, 0, m_ScreenWidth, m_ScreenHeight, true);
 		}
 		else
 		{
-			// Оригинальное поведение TcAllowAnyRes
-			if(m_ScreenHeight > 4 * m_ScreenWidth / 5)
-			{
-				m_IsForcedViewport = true;
-				m_ScreenHeight = 4 * m_ScreenWidth / 5;
-				if(SendViewportChangeToBackend)
-					UpdateViewport(0, 0, m_ScreenWidth, m_ScreenHeight, true);
-			}
-			else
-			{
-				m_IsForcedViewport = false;
-			}
+			m_IsForcedViewport = false;
 		}
 	}
 	else
