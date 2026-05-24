@@ -827,10 +827,14 @@ void CGameClient::OnRender()
 
 	// Stretch
 	if(g_Config.m_TcStretchEnable)
-	    Graphics()->SetAspectOverride((float)g_Config.m_TcStretchWidth / (float)g_Config.m_TcStretchHeight);
+	{
+		float TargetAspect = (float)g_Config.m_TcStretchWidth / (float)g_Config.m_TcStretchHeight;
+		Graphics()->SetAspectOverride(TargetAspect);
+	}
 	else
-	    Graphics()->SetAspectOverride(0.0f);
-
+	{
+		Graphics()->SetAspectOverride(0.0f);
+	}
 	// check if multi view got activated
 	if(!m_MultiView.m_IsInit && m_MultiViewActivated)
 	{

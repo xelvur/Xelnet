@@ -221,13 +221,15 @@ public:
 
 	int ScreenWidth() const { return m_ScreenWidth; }
 	int ScreenHeight() const { return m_ScreenHeight; }
-	float ScreenAspect() const { return m_AspectOverride > 0.0f ? m_AspectOverride : (float)ScreenWidth() / (float)ScreenHeight(); }
 	void SetAspectOverride(float Aspect) { m_AspectOverride = Aspect; }
-	float RealScreenAspect() const { return (float)ScreenWidth() / (float)ScreenHeight(); }
+	float ScreenAspect() const {
+		return m_AspectOverride > 0.0f ? m_AspectOverride : (float)ScreenWidth() / (float)ScreenHeight();
+	}
+	//float RealScreenAspect() const { return (float)ScreenWidth() / (float)ScreenHeight(); }
 
-	int m_NativeScreenWidth = 0;
-	int m_NativeScreenHeight = 0;
-	float NativeScreenAspect() const { return m_NativeScreenWidth > 0 ? (float)m_NativeScreenWidth / (float)m_NativeScreenHeight : (float)ScreenWidth() / (float)ScreenHeight(); }
+	//int m_NativeScreenWidth = 0;
+	//int m_NativeScreenHeight = 0;
+	//float NativeScreenAspect() const { return m_NativeScreenWidth > 0 ? (float)m_NativeScreenWidth / (float)m_NativeScreenHeight : (float)ScreenWidth() / (float)ScreenHeight(); }
 
 	float ScreenHiDPIScale() const { return m_ScreenHiDPIScale; }
 	int WindowWidth() const { return m_ScreenWidth / m_ScreenHiDPIScale; }
