@@ -4,6 +4,9 @@
 #include <base/log.h>
 #include <base/system.h>
 
+//simulate key import sdl2
+#include <SDL2/SDL.h>
+
 #include <engine/client.h>
 #include <engine/console.h>
 #include <engine/external/json-parser/json.h>
@@ -780,6 +783,77 @@ void CTouchControls::OnWindowResize()
 	}
 }
 
+// Таблица имён клавиш → SDL коды
+int CTouchControls::CSimulateKeyTouchButtonBehavior::KeyNameToSdl(const char *pKeyName)
+{
+    struct { const char *pName; int Key; } aKeys[] = {
+        {"shift",  SDLK_LSHIFT},
+        {"lshift", SDLK_LSHIFT},
+        {"rshift", SDLK_RSHIFT},
+        {"ctrl",   SDLK_LCTRL},
+        {"lctrl",  SDLK_LCTRL},
+        {"rctrl",  SDLK_RCTRL},
+        {"alt",    SDLK_LALT},
+        {"space",  SDLK_SPACE},
+        {"enter",  SDLK_RETURN},
+        {"escape", SDLK_ESCAPE},
+        {"tab",    SDLK_TAB},
+        {"delete", SDLK_DELETE},
+        {"w", SDLK_w}, {"a", SDLK_a},
+        {"s", SDLK_s}, {"d", SDLK_d},
+        {"e", SDLK_e}, {"r", SDLK_r},
+        {"f", SDLK_f}, {"g", SDLK_g},
+        {"q", SDLK_q}, {"z", SDLK_z},
+        {"x", SDLK_x}, {"c", SDLK_c},
+        {"v", SDLK_v}, {"b", SDLK_b},
+        {"1", SDLK_1}, {"2", SDLK_2},
+        {"3", SDLK_3}, {"4", SDLK_4},
+        {"5", SDLK_5},
+    };
+    for(auto &k : aKeys)
+        if(str_comp_nocase(pKeyName, k.pName) == 0)
+            return k.Key;
+    return SDLK_UNKNOWN;
+}
+
+CTouchControls::CButtonLabel CTouchControls::CSimulateKeyTouchButtonBehavior::GetLabel() const
+{
+    CButtonLabel Label;
+    Label.m_Type = CButtonLabel::EType::PLAIN;
+    Label.m_pLabel = m_aKeyName;
+    return Label;
+}
+
+void CTouchControls::CSimulateKeyTouchButtonBehavior::OnActivate()
+{
+    if(m_SdlKey == SDLK_UNKNOWN) return;
+    SDL_Event Event = {};
+    Event.type = SDL_KEYDOWN;
+    Event.key.keysym.sym = m_SdlKey;
+    Event.key.state = SDL_PRESSED;
+    Event.key.repeat = 0;
+    SDL_PushEvent(&Event);
+}
+
+void CTouchControls::CSimulateKeyTouchButtonBehavior::OnDeactivate(bool ByFinger)
+{
+    if(m_SdlKey == SDLK_UNKNOWN) return;
+    SDL_Event Event = {};
+    Event.type = SDL_KEYUP;
+    Event.key.keysym.sym = m_SdlKey;
+    Event.key.state = SDL_RELEASED;
+    Event.key.repeat = 0;
+    SDL_PushEvent(&Event);
+}
+
+void CTouchControls::CSimulateKeyTouchButtonBehavior::WriteToConfiguration(CJsonWriter *pWriter)
+{
+    pWriter->WriteAttribute("type");
+    pWriter->WriteStrValue(BEHAVIOR_TYPE);
+    pWriter->WriteAttribute("key");
+    pWriter->WriteStrValue(m_aKeyName);
+}
+
 bool CTouchControls::OnTouchState(const std::vector<IInput::CTouchFingerState> &vTouchFingerStates)
 {
 	if(!g_Config.m_ClTouchControls)
@@ -1527,6 +1601,18 @@ std::unique_ptr<CTouchControls::CTouchButtonBehavior> CTouchControls::ParseBehav
 	{
 		return ParseBindToggleBehavior(&BehaviorObject);
 	}
+	// В функции парсинга behavior (ищи где сравнивается BehaviorType со строками):
+    else if(str_comp(pBehaviorType, CSimulateKeyTouchButtonBehavior::BEHAVIOR_TYPE) == 0)
+    {
+        auto pBehavior = std::make_unique<CSimulateKeyTouchButtonBehavior>();
+        const json_value *pKey = json_object_item(pBehaviorValue, "key");
+        if(pKey && pKey->type == json_string)
+        {
+            str_copy(pBehavior->m_aKeyName, pKey->u.string.ptr, sizeof(pBehavior->m_aKeyName));
+            pBehavior->m_SdlKey = CSimulateKeyTouchButtonBehavior::KeyNameToSdl(pBehavior->m_aKeyName);
+        }
+        pButton.m_pBehavior = std::move(pBehavior);
+    }
 	else
 	{
 		log_error("touch_controls", "Failed to parse touch button behavior: attribute 'type' specifies unknown value '%s'", BehaviorType.u.string.ptr);

@@ -246,6 +246,24 @@ public:
 		virtual const char *GetBehaviorType() const = 0;
 	};
 
+	//Рализизация симуляции нажатия клавиш
+	class CSimulateKeyTouchButtonBehavior : public CTouchButtonBehavior
+	{
+	public:
+        static constexpr const char *const BEHAVIOR_TYPE = "simulate-key";
+
+        char m_aKeyName[32]; // например "shift", "w", "ctrl"
+        int m_SdlKey;        // SDL_Keycode
+
+        CButtonLabel GetLabel() const override;
+        void OnActivate() override;
+        void OnDeactivate(bool ByFinger) override;
+        void WriteToConfiguration(CJsonWriter *pWriter) override;
+        const char *GetBehaviorType() const override { return BEHAVIOR_TYPE; }
+
+        static int KeyNameToSdl(const char *pKeyName);
+    };
+
 	/**
 	 * Abstract class for predefined behaviors.
 	 *
