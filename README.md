@@ -14,7 +14,7 @@ Thanks to tela for the logo design, and solly for svg <3
 
 ### Links
 
-[Discord](https://discord.gg/BgPSapKRkZ)
+[Discord](https://t.me/xelnet_client)
 [Website](https://tclient.app)
 
 ### Installation
