@@ -28,6 +28,8 @@ class CTClient : public CComponent
 	void SpecId(int ClientId);
 
 	int m_EmoteCycle = 0;
+	bool m_LastForcedAspect = true;
+	bool m_ForcedAspectInitialized = false;
 	static void ConEmoteCycle(IConsole::IResult *pResult, void *pUserData);
 
 	class IEngineGraphics *m_pGraphics = nullptr;

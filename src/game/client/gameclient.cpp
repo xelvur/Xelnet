@@ -822,11 +822,8 @@ void CGameClient::UpdatePositions()
 
 void CGameClient::OnRender()
 {
-	const ColorRGBA ClearColor = color_cast<ColorRGBA>(ColorHSLA(g_Config.m_ClOverlayEntities ? g_Config.m_ClBackgroundEntitiesColor : g_Config.m_ClBackgroundColor));
-	Graphics()->Clear(ClearColor.r, ClearColor.g, ClearColor.b);
-
-	// Stretch
-	if(g_Config.m_TcStretchEnable)
+	//Stretch 
+	if(g_Config.m_TcStretchEnable && g_Config.m_TcStretchHeight > 0)
 	{
 		float TargetAspect = (float)g_Config.m_TcStretchWidth / (float)g_Config.m_TcStretchHeight;
 		Graphics()->SetAspectOverride(TargetAspect);
@@ -835,6 +832,10 @@ void CGameClient::OnRender()
 	{
 		Graphics()->SetAspectOverride(0.0f);
 	}
+
+	const ColorRGBA ClearColor = color_cast<ColorRGBA>(ColorHSLA(g_Config.m_ClOverlayEntities ? g_Config.m_ClBackgroundEntitiesColor : g_Config.m_ClBackgroundColor));
+	Graphics()->Clear(ClearColor.r, ClearColor.g, ClearColor.b);
+
 	// check if multi view got activated
 	if(!m_MultiView.m_IsInit && m_MultiViewActivated)
 	{
@@ -2362,7 +2363,7 @@ void CGameClient::OnNewSnapshot()
 	}
 
 	// send show distance
-	if(ShowDistanceZoom != m_LastShowDistanceZoom || Graphics()->ScreenAspect() != m_LastScreenAspect)
+	if(ShowDistanceZoom != m_LastShowDistanceZoom || std::fabs(Graphics()->ScreenAspect() - m_LastScreenAspect) > 0.001f)
 	{
 		CNetMsg_Cl_ShowDistance Msg;
 		float x, y;

@@ -5,6 +5,7 @@
 #include <base/log.h>
 
 #include <engine/client.h>
+#include <engine/client/client.h>
 #include <engine/client/enums.h>
 #include <engine/external/regex.h>
 #include <engine/external/tinyexpr.h>
@@ -660,23 +661,37 @@ void CTClient::FinishTClientInfo()
 
 void CTClient::SetForcedAspect()
 {
-	// TODO: Fix flashing on windows 
-	int State = Client()->State();
+	if(!Graphics()->IsBackendInitialized())
+		return;
 
-	// Stretch mode
+	int State = Client()->State();
+	bool Force = true;
+
 	if(g_Config.m_TcStretchEnable)
 	{
-		Graphics()->SetForcedAspect(true);
-		return;
+		Force = true;
+	}
+	else if(g_Config.m_TcAllowAnyRes == 0)
+	{
+		Force = true;
+	}
+	else if(State == CClient::EClientState::STATE_DEMOPLAYBACK)
+	{
+		Force = false;
+	}
+	else if(State == CClient::EClientState::STATE_ONLINE &&
+	        GameClient()->m_GameInfo.m_AllowZoom &&
+	        !GameClient()->m_Menus.IsActive())
+	{
+		Force = false;
 	}
 
-	// Original TcAllowAnyRes logic
-	bool Force = true;
-	if(g_Config.m_TcAllowAnyRes == 0);
-	else if(State == CClient::EClientState::STATE_DEMOPLAYBACK)
-		Force = false;
-	else if(State == CClient::EClientState::STATE_ONLINE && GameClient()->m_GameInfo.m_AllowZoom && !GameClient()->m_Menus.IsActive())
-		Force = false;
+	// КЛЮЧЕВОЙ ФИКс: вызываем Graphics()->SetForcedAspect только если значение изменилось
+	if(m_ForcedAspectInitialized && Force == m_LastForcedAspect)
+		return;
+
+	m_LastForcedAspect = Force;
+	m_ForcedAspectInitialized = true;
 	Graphics()->SetForcedAspect(Force);
 }
 
