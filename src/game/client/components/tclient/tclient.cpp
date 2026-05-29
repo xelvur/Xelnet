@@ -699,6 +699,7 @@ void CTClient::SetForcedAspect()
 
 void CTClient::OnStateChange(int OldState, int NewState)
 {
+	m_ForcedAspectInitialized = false; // Сброс кэша
 	SetForcedAspect();
 	for(auto &AirRescuePositions : m_aAirRescuePositions)
 		AirRescuePositions = {};
