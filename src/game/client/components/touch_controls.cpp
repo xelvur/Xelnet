@@ -1117,7 +1117,7 @@ void CTouchControls::UpdateButtonsGame(const std::vector<IInput::CTouchFingerSta
 		}
 	}
 
-	// Remove remaining fingers for active buttons after updating the buttons.
+	// Removing remaining fingers for active buttons after updating the buttons.
 	for(CTouchButton &TouchButton : m_vTouchButtons)
 	{
 		if(!TouchButton.m_pBehavior->IsActive())
